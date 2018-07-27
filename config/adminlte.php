@@ -75,8 +75,8 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | URLs
-    |--------------------------------------------------------------------------
+    | icons
+    |credit-card-alt
     |
     | Register here your dashboard, logout, login and register URLs. The
     | logout URL automatically sends a POST request in Laravel 5.3 or higher.
@@ -108,12 +108,34 @@ return [
     */
 
     'menu' => [
-        'MENU',
+        // 'MENU',
         [
-            'text'        => 'Home',
+            'text'        => 'Dashborad',
             'url'         => 'admin/pages',
-            'icon'        => 'home',
+            'icon'        => 'dashboard',
         ],
+
+        [
+            'text' => 'Financeiro',
+            'url' => 'admin/pages',
+            'icon' => 'money',
+            'submenu' => [
+                [
+                    'text' => 'Saldo',
+                    'url' => 'admin/balance',
+                    'icon' => 'credit-card-alt',
+                ],
+
+                [
+                    'text' => 'Histórico',
+                    'url' => 'admin/historic',
+                    'icon' => 'history',
+                ]
+
+
+            ]
+        ],
+
     ],
 
     /*
