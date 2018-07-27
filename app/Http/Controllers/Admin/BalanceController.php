@@ -22,12 +22,12 @@ class BalanceController extends Controller
         return view('admin.balance.deposit');
     }
 
-    public function depositStore(Request $request, Balance $balance)
+    public function depositStore(Request $request)
     {
 
-        // $formDados = $request->value;
-        $saldoUser = auth()->user()->balance()->firstOrCreate([]);
-        $balance->deposit($saldoUser);
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $retorno = $balance->deposit($request->value);
+        dd($retorno);
     }
 
 }
