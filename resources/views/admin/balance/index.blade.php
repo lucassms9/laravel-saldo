@@ -15,9 +15,13 @@
     <div class="box">
         <div class="box-header">
             <a href="{{route('admin.deposit')}}" class="btn btn-primary"><i style="padding-right:5px;" class="fa fa-shopping-cart" aria-hidden="true"></i>Recarregar</a>
-            <a class="btn btn-danger"><i style="padding-right:5px;" class="fa fa-shopping-cart" aria-hidden="true"></i>Sacar</a>
+            @if($amount > 0)
+            <a href="{{route('admin.withdraw')}}" class="btn btn-danger"><i style="padding-right:5px;" class="fa fa-shopping-cart" aria-hidden="true"></i>Sacar</a>
+            @endif
         </div>
         <div class="box-body">
+              @include('admin.includes.alerts')
+
            <div class="small-box bg-green">
             <div class="inner">
             <h3>R$ {{ number_format($amount, 2, ',', '.')}}</h3>

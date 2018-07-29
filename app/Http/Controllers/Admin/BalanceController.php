@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Balance;
+use App\Http\Requests\MoneyValidationFrom;
+use Illuminate\Support\Facades\Redirect;
 
 class BalanceController extends Controller
 {
@@ -22,12 +24,55 @@ class BalanceController extends Controller
         return view('admin.balance.deposit');
     }
 
-    public function depositStore(Request $request)
+    public function depositStore(MoneyValidationFrom $request)
     {
 
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $retorno = $balance->deposit($request->value);
-        dd($retorno);
+        if($retorno['success']){
+
+            return redirect()
+                        ->route('admin.balance')
+                        ->with('success', $retorno['message']);
+        }else{
+
+            return redirect()
+                        ->back()
+                        ->with('error', $retorno['message']);
+
+        }
+
     }
+
+
+    public function withdraw()
+    {
+    
+        return view('admin.balance.withdraw', compact(''));
+    }
+
+
+    public function withdrawStore(MoneyValidationFrom $request)
+    {
+
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $retorno = $balance->withdraw($request->value);
+        if ($retorno['success']) {
+
+            return redirect()
+                ->route('admin.balance')
+                ->with('success', $retorno['message']);
+        } else {
+
+            return redirect()
+                ->back()
+                ->with('error', $retorno['message']);
+
+        }
+
+
+    }
+
+
 
 }
