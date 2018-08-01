@@ -24,8 +24,8 @@ class UpdateProfileFormRequest extends FormRequest
     public function rules()
     {   
 
-        $id = auth()->user()->id;
-
+        $id  = auth()->user()->id;
+ 
         return [
             'name'      => 'required|string|max:255',
             'email'     => "required|string|email|max:255|unique:users,email,{$id},id",
