@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','image'
     ];
 
     /**
@@ -37,5 +37,21 @@ class User extends Authenticatable
     public function historics()
     {
         return $this->hasMany(Historic::class);
+    }
+
+    public function getSender($sender)
+    {
+       
+        $getSender = $this->where('name', 'LIKE', "%$sender%")
+                        ->orWhere('email',$sender)
+                        ->get()
+                        ->first();
+
+        // $getSender = $this->where('name', 'LIKE', "%$sender%")
+        //     ->orWhere('email', $sender)
+        //     ->toSql();
+
+        return $getSender;
+
     }
 }

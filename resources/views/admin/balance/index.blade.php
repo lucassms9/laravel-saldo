@@ -17,6 +17,7 @@
             <a href="{{route('admin.deposit')}}" class="btn btn-primary"><i style="padding-right:5px;" class="fa fa-shopping-cart" aria-hidden="true"></i>Recarregar</a>
             @if($amount > 0)
             <a href="{{route('admin.withdraw')}}" class="btn btn-danger"><i style="padding-right:5px;" class="fa fa-shopping-cart" aria-hidden="true"></i>Sacar</a>
+             <a href="{{route('admin.transfer')}}" class="btn btn-info"><i style="padding-right:5px;" class="fa fa-exchange" aria-hidden="true"></i>Transferir</a>
             @endif
         </div>
         <div class="box-body">
